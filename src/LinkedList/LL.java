@@ -72,22 +72,68 @@ public class LL {
         System.out.println("size of a list " + size);
     }
 
+    public void reverseListIterative(){
+        if( head == null || head.next == null){
+            return;
+        }
+        Node prevNode = head;
+        Node curNode = head.next;
+        while(curNode != null){
+            Node nextNode = curNode.next;
+            curNode.next = prevNode;
+            prevNode = curNode;
+            curNode = nextNode;
+        }
+        head.next = null;
+        head = prevNode;
+    }
+
+//    public void addInmid(int index, int data){
+//        if(index > size && index< 0){
+//            System.out.println("invalid index");
+//            return;
+//        }
+//        size++;
+//        Node newNode = new Node(data);
+//        if(head == null || index == 0){
+//            newNode.next = head;
+//            head = newNode;
+//            return;
+//        }
+//        Node curNode = head;
+//        for (int i = 1; i < size ; i++) {
+//            if(i == index){
+//                Node nextNode = curNode.next;
+//                curNode.next = nextNode;
+//                newNode.next = nextNode;
+//                break;
+//            }
+//            curNode = curNode.next;
+//        }
+//    }
+
     public static void main(String[] args) {
         LL list = new LL();
         list.addLast(2);
         list.addLast(3);
-        list.addLast(4);
+        list.addLast(5);
         list.printList();
 
         list.addFirst(1);
         list.printList();
+
+//        list.addInmid(2, 4);
+        list.printList();
+
         list.getSize();
+
+        list.reverseListIterative();
+        list.printList();
 
         list.removeFirst();
         list.printList();
 
         list.removeLast();
         list.printList();
-
     }
 }
